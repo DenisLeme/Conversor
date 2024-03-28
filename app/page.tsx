@@ -46,13 +46,13 @@ const Home: React.FC = () => {
   }
 
   return (
-    <div className="bg-[#091D42] w-full h-screen flex flex-col justify-center items-center gap-10">
+    <div className="bg-[#091D42] w-full h-[80vh] flex flex-col justify-start items-center ">
       {/* <div>
         <h1 className='text-black flex font-bold text-[26px] '>
           Conversor de Moedas
         </h1>
       </div> */}
-      <div className="p-4 bg-[#5ABF9A] shadow-xl w-2/4 h-fit">
+      <div className="p-4 bg-[#5ABF9A] shadow-xl w-2/4 ">
         <section className="bg-[#091D4250] p-2  flex justify-center items-center">
           <p className="text-[#091D42] text-3xl font-semibold">Conversor de Moedas</p>
         </section>

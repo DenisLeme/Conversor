@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Image from 'next/image'
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,6 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <div className="flex self-center items-center justify-center bg-[#091D42] h-[20vh]">
+      <Image src={'/assets/rzkdigital.png'} alt="RZK-logo" width={200} height={200} />
+      </div>
       <body className={inter.className}>{children}</body>
     </html>
   );
