@@ -17,9 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <div className="flex self-center items-center justify-center bg-[#091D42] h-[20vh]">
+      <header className="flex self-center items-center justify-center bg-[#091D42] h-[20vh]">
       <Image src={'/assets/rzkdigital.png'} alt="RZK-logo" width={200} height={200} />
-      </div>
+      </header>
       <body className={inter.className}>{children}</body>
     </html>
   );
