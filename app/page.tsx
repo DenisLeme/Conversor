@@ -1,5 +1,6 @@
 "use client"
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image'
 
 const Home: React.FC = () => {
   const [selectedCurrency, setSelectedCurrency] = useState("USD");
@@ -46,12 +47,11 @@ const Home: React.FC = () => {
   }
 
   return (
+    <>
+    <div className="flex self-center items-center justify-center bg-[#091D42] h-[20vh]">
+    <Image src={'/assets/rzkdigital.png'} alt="RZK-logo" width={200} height={200} />
+    </div>
     <div className="bg-[#091D42] w-full h-[80vh] flex flex-col justify-start items-center ">
-      {/* <div>
-        <h1 className='text-black flex font-bold text-[26px] '>
-          Conversor de Moedas
-        </h1>
-      </div> */}
       <div className="p-4 bg-[#5ABF9A] shadow-xl w-2/4 ">
         <section className="bg-[#091D4250] p-2  flex justify-center items-center">
           <p className="text-[#091D42] text-3xl font-semibold">Conversor de Moedas</p>
@@ -92,6 +92,7 @@ const Home: React.FC = () => {
         </main>
       </div>
     </div>
+    </>
   );
 }
 
