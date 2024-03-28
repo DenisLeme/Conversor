@@ -2,24 +2,23 @@
 import React, { useState, useEffect } from 'react';
 
 const Home: React.FC = () => {
-  const [selectedCurrency, setSelectedCurrency] = useState("US$ Dolar americano");
+  const [selectedCurrency, setSelectedCurrency] = useState("USD");
   const [inputValue, setInputValue] = useState("");
   const [realValue, setRealValue] = useState("");
   const [convertedValue, setConvertedValue] = useState("");
 
   const currencies = [
-    { name: "US$ Dolar americano", imgSrc: "/convert/assets/estados-unidos.png" },
-    { name: "€ Euro", imgSrc: "/convert/assets/euro.png" },
-    { name: "BitCoin", imgSrc: "/convert/assets/bitCoin.png" }
+    { name: "USD" },
+    { name: "€ Euro" },
+    { name: "BitCoin" }
   ];
-  
-
+ 
   useEffect(() => {
     convertValues();
   }, [inputValue, selectedCurrency]); // Executar a conversão sempre que o valor de entrada ou a moeda selecionada mudar
 
   const convertValues = async () => {
-    // Simulação de chamada à API
+    //Chamada API
     const data = await fetch("https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,BTC-BRL").then(response => response.json());
 
     const dolar = data.USDBRL.high;
@@ -28,7 +27,7 @@ const Home: React.FC = () => {
 
     setRealValue(new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(Number(inputValue)));
 
-    if (selectedCurrency === "US$ Dolar americano") {
+    if (selectedCurrency === "USD") {
       setConvertedValue(new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(Number(inputValue) / dolar));
     }
 
@@ -47,38 +46,47 @@ const Home: React.FC = () => {
   }
 
   return (
-    <div className="bg-white min-h-screen flex justify-center items-center">
-      <div className="container p-4 bg-blue-900 shadow-lg rounded-lg">
-        <header className="bg-blue-600 p-2 rounded-t-lg flex justify-center items-center">
-          <h1 className="text-white text-lg font-semibold">Conversor de Moedas</h1>
-        </header>
-        <main className="p-4">
-          <label className="text-gray-400">Converter <b>de</b></label>
-          <select className="block bg-white border border-gray-300 rounded p-1 w-full text-black">
+    <div className="bg-[#091D42] w-full h-screen flex flex-col justify-center items-center gap-10">
+      {/* <div>
+        <h1 className='text-black flex font-bold text-[26px] '>
+          Conversor de Moedas
+        </h1>
+      </div> */}
+      <div className="p-4 bg-[#5ABF9A] shadow-xl w-2/4 h-fit">
+        <section className="bg-[#091D4250] p-2  flex justify-center items-center">
+          <p className="text-[#091D42] text-3xl font-semibold">Conversor de Moedas</p>
+        </section>
+        <main className="p-4 flex flex-col gap-2">
+          <label className="text-[#091D42]">Converter <b>de</b></label>
+          <div className="text-[#091D42] flex flex-row w-full border-b-2 border-[#091D4250] items-center px-2 bg-[#ffffff50] h-[40px]">
+          <select  style={{all: 'unset'}} className="block bg-transparent p-1 text-[#091D42] placeholder-[#091D42] w-full">
             <option>$ Real Brasileiro</option>
           </select>
-          <label className="text-gray-400">Converter <b>para</b></label>
-          <select className="block bg-white border border-gray-300 rounded p-1 w-full text-black" value={selectedCurrency} onChange={changeCurrency}>
+          </div>
+          <label className="text-[#091D42]">Converter <b>para</b></label>
+          <div className="text-[#091D42] flex flex-row w-full border-b-2 border-[#091D4250] items-center px-2 bg-[#ffffff50] h-[40px]">
+          <select className="block bg-transparent p-1 text-[#091D42] placeholder-[#091D42] w-full [appearance:none] " value={selectedCurrency} onChange={changeCurrency}>
             {currencies.map(currency => (
-              <option key={currency.name}>{currency.name}</option>
+              <option  className="text-[#091D42] flex flex-row w-full border-b-2 border-[#091D4250] items-center px-2 bg-[#5ABF9A] h-[40px]" key={currency.name}>{currency.name}</option>
             ))}
           </select>
-          <label className="text-gray-400"><strong>Valor</strong></label>
-          <input type="number" className="block bg-white border border-gray-300 rounded p-1 w-full text-black" placeholder="R$ 10.000,00" value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
+          </div>
+          <label className="text-[#091D42]"><strong>Valor</strong></label>
+          <div className="text-[#091D42] flex flex-row w-full border-b-2 border-[#091D4250] items-center px-2 bg-[#ffffff50] h-[40px]">
+          <div>R$ </div>
+          <input type="number" style={{all: 'unset'}} className="block bg-transparent p-1 text-[#091D42] placeholder-[#091D42] w-full [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" placeholder=" 10.000,00" value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
+          </div>
 
-          <section className="border border-blue-600 rounded p-4 mt-4 flex flex-col items-center">
-            <div className="container-currency flex flex-col items-center">
-              <img src="/assets/brasil.png" alt="icone do Brasil" />
-              <p className="text-gray-400 font-semibold">Real</p>
-              <p className="text-blue-600 font-bold text-xl">{realValue}</p>
+          <section className="border-t-2 border-[#091D42] rounded p-4 mt-4 flex flex-col items-start">
+            <div className="container-currency flex flex-col items-start">
+              <p className="text-[#091D42] font-semibold">Real</p>
+              <p className="text-[#091D42] font-bold text-xl">{realValue}</p>
             </div>
             <div>
-              <img className="arrow-img" src="/convert/assests/Vector.png" />
             </div>
-            <div className="container-currency flex flex-col items-center">
-            <img src={currencies.find(currency => currency.name === selectedCurrency)?.imgSrc} alt={`icone de ${selectedCurrency}`} />
-              <p className="text-gray-400 font-semibold">{selectedCurrency}</p>
-              <p className="text-blue-600 font-bold text-xl">{convertedValue}</p>
+            <div className="container-currency flex flex-col items-start">
+              <p className="text-[#091D42] font-semibold">{selectedCurrency}</p>
+              <p className="text-[#091D42] font-bold text-xl">{convertedValue}</p>
             </div>
           </section>
         </main>
